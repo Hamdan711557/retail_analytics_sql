@@ -63,7 +63,7 @@ def preprocess(df: pd.DataFrame) -> dict:
     log.append(f"🔧 Dropped {removed} rows with missing critical values.")
 
     # ── Step 4: Parse InvoiceDate ─────────────────────────────────────────────
-    df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], infer_datetime_format=True, errors="coerce")
+    df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
     invalid_dates = df["InvoiceDate"].isna().sum()
     df.dropna(subset=["InvoiceDate"], inplace=True)
     log.append(f"📅 Parsed dates. Dropped {invalid_dates} rows with unparseable dates.")
